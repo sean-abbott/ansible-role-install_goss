@@ -1,0 +1,8 @@
+---
+- name: "get goss binary"
+  become: yes
+  get_url:
+    url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-amd64"
+    dest: "/usr/local/bin/goss"
+    mode: 0755
+    checksum: "sha256:{{ goss[goss_version].sha256sum }}"
