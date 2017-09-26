@@ -10,7 +10,6 @@
     url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-amd64"
     dest: "{{ goss_path }}/goss"
     mode: 0755
-    checksum: "sha256:{{ goss[goss_version].sha256sum }}"
 
 - name: "copy dgoss to remote"
   copy:
