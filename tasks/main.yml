@@ -1,8 +1,18 @@
 ---
+- name: Install ca-certificates
+  apt:
+    name: ca-certificates
+  when: ansible_os_family == 'Debian'
+
 - name: "get goss binary"
   become: yes
   get_url:
     url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-amd64"
-    dest: "/usr/local/bin/goss"
+    dest: "{{ goss_path }}/goss"
     mode: 0755
-    checksum: "sha256:{{ goss[goss_version].sha256sum }}"
+
+- name: "copy dgoss to remote"
+  copy:
+    src: "dgoss"
+    dest: "{{ goss_path }}/dgoss"
+    mode: 0755
